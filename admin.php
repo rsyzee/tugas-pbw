@@ -80,6 +80,12 @@ if (!isset($_SESSION['username'])) {
 						<li>
 							<a class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="admin.php?page=article">Article</a>
 						</li>
+						<li>
+							<a class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="admin.php?page=gallery">Gallery</a>
+						</li>
+						<li>
+							<a class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="admin.php?page=user">User</a>
+						</li>
 						<li class="relative group">
 							<button class="flex items-center gap-1 text-red-500 font-bold hover:text-red-600 transition-colors" id="dropdownBtn">
 								<?= $_SESSION['username'] ?>
@@ -111,6 +117,12 @@ if (!isset($_SESSION['username'])) {
 					<a class="block py-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="admin.php?page=article">Article</a>
 				</li>
 				<li>
+					<a class="block py-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="admin.php?page=gallery">Gallery</a>
+				</li>
+				<li>
+					<a class="block py-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="admin.php?page=user">User</a>
+				</li>
+				<li>
 					<span class="block py-2 text-red-500 font-bold"><?= $_SESSION['username'] ?></span>
 				</li>
 				<li>
@@ -126,7 +138,7 @@ if (!isset($_SESSION['username'])) {
 		<div class="container mx-auto">
 			<?php
 			if (isset($_GET['page'])) {
-				$allowed_pages = ['dashboard', 'article'];
+				$allowed_pages = ['dashboard', 'article', 'gallery', 'user'];
 				$page = $_GET['page'];
 
 				if (in_array($page, $allowed_pages) && file_exists($page . ".php")) {

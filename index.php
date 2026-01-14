@@ -454,7 +454,8 @@ include "db-conn.php";
 				</div>
 
 				<?php
-				$sql_gallery = "SELECT * FROM article WHERE gambar != '' ORDER BY tanggal DESC";
+
+				$sql_gallery = "SELECT * FROM gallery WHERE gambar != '' ORDER BY tanggal DESC";
 				$hasil_gallery = $pdo->query($sql_gallery);
 				?>
 
@@ -470,7 +471,7 @@ include "db-conn.php";
 								<img
 									src="img/<?= htmlspecialchars($row_gallery["gambar"]) ?>"
 									class="w-full h-full object-cover transition-transform duration-700 group-hover/slide:scale-105"
-									alt="<?= htmlspecialchars($row_gallery["judul"]) ?>"
+									alt="<?= htmlspecialchars($row_gallery["judul"] ?: 'Gallery Image') ?>"
 								>
 								<!-- Gradient Overlay -->
 								<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 md:via-black/20 to-transparent opacity-90 md:opacity-80"></div>
@@ -481,8 +482,12 @@ include "db-conn.php";
 										<span class="inline-block px-2 py-1 md:px-3 md:py-1 bg-blue-600 rounded-full text-[10px] md:text-xs font-bold mb-2 md:mb-3 shadow-md">
 											<i class="bi bi-calendar3 mr-1"></i> <?= date('d M Y', strtotime($row_gallery["tanggal"])) ?>
 										</span>
+										<?php if (!empty($row_gallery["judul"])): ?>
 										<h3 class="text-lg md:text-2xl font-bold mb-1 md:mb-2 text-shadow-sm truncate"><?= htmlspecialchars($row_gallery["judul"]) ?></h3>
-										<p class="text-gray-200 text-xs md:text-sm line-clamp-2 leading-relaxed"><?= htmlspecialchars(strip_tags($row_gallery["isi"])) ?></p>
+										<?php endif; ?>
+										<?php if (!empty($row_gallery["deskripsi"])): ?>
+										<p class="text-gray-200 text-xs md:text-sm line-clamp-2 leading-relaxed"><?= htmlspecialchars(strip_tags($row_gallery["deskripsi"])) ?></p>
+										<?php endif; ?>
 									</div>
 								</div>
 							</div>

@@ -101,6 +101,23 @@ ALTER TABLE `article`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gallery`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `judul` text DEFAULT NULL,
+  `deskripsi` text DEFAULT NULL,
+  `gambar` text NOT NULL,
+  `tanggal` datetime DEFAULT NULL,
+  `username` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

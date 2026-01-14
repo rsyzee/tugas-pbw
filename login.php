@@ -13,12 +13,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$username = $_POST['user'];
 	$password = hash('sha256', $_POST['pass']);
 
-	$stmt = $pdo->prepare("SELECT username FROM user WHERE username = :username AND password = :password");
+	$stmt = $pdo->prepare("SELECT username, role FROM user WHERE username = :username AND password = :password");
 	$stmt->execute(['username' => $username, 'password' => $password]);
 	$user = $stmt->fetch();
 
 	if (!empty($user)) {
 		$_SESSION['username'] = $user['username'];
+		$_SESSION['role'] = $user['role'] ?? 'user';
 		header("location:admin.php");
 		exit();
 	} else {
